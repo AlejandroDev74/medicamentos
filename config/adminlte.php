@@ -305,13 +305,39 @@ return [
         
         ['header' => 'DASHBOARD'],
         [
-            'text' => 'Principal',
+            'text' => 'Catálogo virtual',
             'url'  => 'home',
+            'icon' => 'fas fa-fw fa-search',
+        ],
+        [
+            'text' => 'Estadísticas',
+            'url'  => 'estadisticas',
             'icon' => 'fas fa-fw fa-home',
         ],
         [
+            'text' => 'Medicamentos',
+            'url'  => 'medicamentos',
+            'icon' => 'fas fa-fw fa-medkit',
+        ],
+        ['header' => 'CONFIGURACIÓN'],
+        [
+            'text' => 'Perfiles de usuario',
+            'url'  => 'perfiles',
+            'icon' => 'fas fa-fw fa-user-secret',
+        ],
+        [
+            'text' => 'Usuarios',
+            'url'  => 'usuarios',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Proveedores',
+            'url'  => 'proveedores',
+            'icon' => 'fas fa-fw fa-user-md',
+        ],
+        [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => '',
             'icon' => 'fas fa-fw fa-lock',
         ],
     ],
@@ -352,21 +378,21 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
