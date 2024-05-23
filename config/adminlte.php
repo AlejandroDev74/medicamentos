@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -321,11 +321,6 @@ return [
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
-            'text' => 'Perfiles de usuario',
-            'url'  => 'perfiles',
-            'icon' => 'fas fa-fw fa-user-secret',
-        ],
-        [
             'text' => 'Usuarios',
             'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-users',
@@ -336,8 +331,8 @@ return [
             'icon' => 'fas fa-fw fa-user-md',
         ],
         [
-            'text' => 'change_password',
-            'url'  => '',
+            'text' => 'Cambiar contraseña',
+            'url'  => 'contrasena',
             'icon' => 'fas fa-fw fa-lock',
         ],
     ],
@@ -413,21 +408,21 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],

@@ -102,3 +102,8 @@
         </p>
     @endif
 @stop
+
+<?php
+    session_start();
+    $_SESSION["mensaje"] = 4;
+?>
