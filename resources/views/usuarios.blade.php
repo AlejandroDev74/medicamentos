@@ -3,6 +3,11 @@
 @section('title', 'Usuarios')
 
 @section('content')
+
+<?php
+    session_start();
+?>
+
 <div class="container">
     <div class="row justify-content-center">
 
@@ -131,7 +136,44 @@
                 "previous": "Anterior"
             }
         }
-        });  
+        });
+
+        var mensaje = <?php echo $_SESSION["mensaje"]; ?>;
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+
+        switch (mensaje) {
+            case 1:
+                Toast.fire({
+                text: " Registro exitoso!",
+                type: "success",
+                });
+            break;
+
+            case 2:
+                Toast.fire({
+                text: " Actualización exitosa!",
+                type: "success",
+                });
+            break;
+
+            case 3:
+                Toast.fire({
+                text: " Ha ocurrido un problema!",
+                type: "error",
+                });
+            break;
+        }
+        <?php   $_SESSION["mensaje"] = 0;   ?>
     </script>
 @endsection
 

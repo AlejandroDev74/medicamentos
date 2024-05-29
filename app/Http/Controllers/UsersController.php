@@ -28,6 +28,9 @@ class UsersController extends Controller
                 'created_at' => $hoy,
                 'updated_at' => $hoy]);
             
+                session_start();
+                $_SESSION["mensaje"] = 1;
+                
         return redirect('usuarios');
     }
 
