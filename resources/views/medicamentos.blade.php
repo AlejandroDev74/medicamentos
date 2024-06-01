@@ -108,6 +108,24 @@
 
         <tr><td colspan=2>
             <div class="input-group mb-3">
+                Proveedor del producto: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-users"></i></span>
+             
+                    <select name="proveedor" class="input-group-text">
+                    <option value="0" disabled selected>Seleccione una opción</option>
+                    @foreach($data1 as $d1)
+                        <option value="{{ $d1->pro_id }}">{{ $d1->pro_nombre }}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>
+            </div>
+        </td></tr>
+
+        <tr><td colspan=2>
+            <div class="input-group mb-3">
                 Descripción del producto: 
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -147,63 +165,112 @@
     </div>
 
 
-    <!-- MODAL EDICIÓN DE PROVEEDORES -->
-    <form action="actualizar_proveedor" method="post">
+    <!-- MODAL EDICIÓN DE medicamento -->
+    <form action="actualizar_medicamento" method="post">
     @csrf
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Edición de proveedor</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Edición de medicamento</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-       
-        <div class="input-group mb-3">
-            Id:
-                <div class="input-group">
-               
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-key"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="id" name="id" required readonly>
-                </div>
-                </div>
-
+        <table>
+            <tr><td colspan=2>
+                Id: 
+            <input type="text" class="form-control" id="id" name="id" required readonly>
+            </td></tr>
+        <tr><td>
             <div class="input-group mb-3">
-                Nombre proveedor: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
+                Nombre del producto: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
+                <input type="text" class="form-control" id="producto" name="producto" autofocus required>
+            </div>
+            </div>
+        </td>
+        <td>
+            <div class="input-group mb-3">
+                Registro INVIMA: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-book"></i></span>
                 </div>
+                <input type="text" class="form-control" id="registro" name="registro" required>
+            </div>
+            </div>
+        </td></tr>
 
-                <div class="input-group mb-3">
-                    Correo electrónico: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-at"></i></span>
-                    </div>
-                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
+        <tr><td>
+            <div class="input-group mb-3">
+                Fecha de expedición: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                 </div>
+                <input type="date" class="form-control" id="fecha_expedicion" name="fecha_expedicion" required>
+            </div>
+            </div>
+        </td>
+        <td>
+            <div class="input-group mb-3">
+                Fecha de vencimiento: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                 </div>
+                <input type="date" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" required>
+            </div>
+            </div>
+        </td></tr>
 
-                <div class="input-group mb-3">
-                    Teléfono: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    </div>
-                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+        <tr><td>
+            <div class="input-group mb-3">
+                Cantidad: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-list"></i></span>
                 </div>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+            </div>
+            </div>
+        </td>
+        <td></tr>
+
+        <tr><td colspan=2>
+            <div class="input-group mb-3">
+                Descripción del producto: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-comment"></i></span>
+             
+                <textarea id="descripcion" name="descripcion" rows="2" cols="50"></textarea>
                 </div>
             </div>
+            </div>
+        </td></tr>
 
+        <tr><td colspan=2>
+            <div class="input-group mb-3">
+                Componentes del producto: 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-flask"></i></span>
+             
+                <textarea id="componentes" name="componentes" rows="3" cols="50"></textarea>
+                </div>
+            </div>
+            </div>
+        </td></tr>
+    </table>
+
+        </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">
             <span class="fas fa-recycle"></span>
@@ -224,7 +291,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del producto</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del medicamento</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -242,7 +309,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre producto: 
+                Nombre medicamento: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -252,12 +319,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado producto: 
+                    Estado medicamento: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del producto" required>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del medicamento" required>
                 </div>
                 </div>
             </div>
@@ -274,7 +341,7 @@
     </div>
     </form>
 
-    <!-- MODAL INHABILITACIÓN DE PRODUCTOS -->
+    <!-- MODAL INHABILITACIÓN DE medicamento -->
     <form action="inhabilitacion_medicamento" method="post">
     @csrf
 
@@ -282,7 +349,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del producto</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del medicamento</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -300,7 +367,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre producto: 
+                Nombre medicamento: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -310,12 +377,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado producto: 
+                    Estado medicamento: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del producto" required>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del medicamento" required>
                 </div>
                 </div>
             </div>
@@ -346,7 +413,7 @@
 
         @csrf
 
-        <table class="table table-striped table-hover" id="proveedores" style='text-align: center; vertical-align: middle;'>
+        <table class="table table-striped table-hover" id="medicamentos" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
                 <tr>
                 <th scope="col">Id</th>
@@ -367,7 +434,8 @@
                     <td>{{ $d->med_unidad }}</td>
                     <td>{{ $d->med_fecha_vencimiento }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
+                        data-id="{{ $d->med_id }}" data-producto="{{ $d->med_producto }}" data-registro="{{ $d->med_registro_sanitario }}" data-fecha_expedicion="{{ $d->med_fecha_expedicion }}" data-fecha_vencimiento="{{ $d->med_fecha_vencimiento }}" data-cantidad="{{ $d->med_cantidad }}" data-descripcion="{{ $d->med_descripcion }}" data-componentes="{{ $d->med_componentes }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
@@ -407,7 +475,7 @@
 
     <script>
 
-        $('#proveedores').DataTable({
+        $('#medicamentos').DataTable({
             responsive: true,
             autoWidth: false,
 
@@ -427,14 +495,22 @@
 
         $(document).on("click", "#editar", function() {
             var id = $(this).data('id');
-            var nombre = $(this).data('nombre');
-            var correo = $(this).data('correo');
-            var telefono = $(this).data('telefono');
+            var producto = $(this).data('producto');
+            var registro = $(this).data('registro');
+            var fecha_expedicion = $(this).data('fecha_expedicion');
+            var fecha_vencimiento = $(this).data('fecha_vencimiento');
+            var cantidad = $(this).data('cantidad');
+            var descripcion = $(this).data('descripcion');
+            var componentes = $(this).data('componentes');
 
             $("#id").val(id);
-            $("#nombre").val(nombre);
-            $("#correo").val(correo);
-            $("#telefono").val(telefono);
+            $("#producto").val(producto);
+            $("#registro").val(registro);
+            $("#fecha_expedicion").val(fecha_expedicion);
+            $("#fecha_vencimiento").val(fecha_vencimiento);
+            $("#cantidad").val(cantidad);
+            $("#descripcion").val(descripcion);
+            $("#componentes").val(componentes);
         });
 
         $(document).on("click", "#habilitar", function() {

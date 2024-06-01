@@ -30,7 +30,7 @@
         <div class="small-box bg-warning">
             <div class="inner">
                 <h3>{{ $data1 }}</h3>
-                <p>Proveedores</p>
+                <p>Proveedores registrados</p>
                 </div>
                 <div class="icon">
                 <i class="fas fa-users"></i>

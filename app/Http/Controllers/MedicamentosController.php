@@ -26,6 +26,7 @@ class MedicamentosController extends Controller
         DB::table('medicamentos')
         ->insert(['med_producto' => $datos['producto'],
                 'med_registro_sanitario' => $datos['registro'],
+                'med_proveedor' => $datos['proveedor'],
                 'med_fecha_expedicion' => $datos['expedicion'],
                 'med_fecha_vencimiento' => $datos['vencimiento'],
                 'med_cantidad' => $datos['cantidad'],
@@ -48,24 +49,30 @@ class MedicamentosController extends Controller
     public function medicamentos(Request $request)
     {
         $data = DB::table('medicamentos')->get();
-        return view('medicamentos', ['data' => $data]);
+        $data1 = DB::table('proveedores')->get();
+
+        return view('medicamentos', ['data' => $data, 'data1' => $data1]);
     }
 
-    public function actualizar_proveedor()    {
+    public function actualizar_medicamento()    {
         $hoy = date("Y-m-d");
 
         $datos = request()->except('_token');
-        DB::table('proveedores')
-            ->where('pro_id', '=', $datos['id'])
-            ->update(['pro_nombre' => $datos['nombre'],
-                'pro_correo' => $datos['correo'],
-                'pro_telefono' => $datos['telefono']
-            ]);
+        DB::table('medicamentos')
+            ->where('med_id', '=', $datos['id'])
+            ->update(['med_producto' => $datos['producto'],
+            'med_registro_sanitario' => $datos['registro'],
+            'med_fecha_expedicion' => $datos['fecha_expedicion'],
+            'med_fecha_vencimiento' => $datos['fecha_vencimiento'],
+            'med_cantidad' => $datos['cantidad'],
+            'med_descripcion' => $datos['descripcion'],
+            'med_componentes' => $datos['componentes'],
+            'med_fecha_ult_mod' => $hoy]);
 
             session_start();
             $_SESSION["mensaje"] = 2;
             
-        return redirect('proveedores');
+        return redirect('medicamentos');
     }
 
     //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE MEDICAMENTOS

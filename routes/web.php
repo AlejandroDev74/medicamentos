@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicamentosController;
+use App\Http\Controllers\OrdenesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::post('/registrar_medicamento', [MedicamentosController::class, 'registrar
 Route::post('/actualizar_medicamento', [MedicamentosController::class, 'actualizar_medicamento'])->name('actualizar_medicamento');
 Route::post('/habilitacion_medicamento', [MedicamentosController::class, 'habilitacion_medicamento'])->name('habilitacion_medicamento');
 Route::post('/inhabilitacion_medicamento', [MedicamentosController::class, 'inhabilitacion_medicamento'])->name('inhabilitacion_medicamento');
+
+//ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO PROVEEDORES
+Route::get('/ordenes', [OrdenesController::class, 'ordenes'])->name('ordenes');
+Route::post('/registrar_orden', [OrdenesController::class, 'registrar_orden'])->name('registrar_orden');

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Catálogos')
+@section('title', 'Órdenes')
 
 @section('content')
 
@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Búsqueda de medicamentos') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Órdenes de medicamentos') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -138,7 +138,7 @@
     </form>
 
      <!-- MODAL compra DE medicamento -->
-     <form action="registrar_orden" method="post">
+     <form action="comprar_medicamento" method="post">
     @csrf
 
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
@@ -188,15 +188,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-list"></i></span>
                     </div>
-                    <input type="number" class="form-control" id="cantidad3" name="cantidad3" min="1" required>
+                    <input type="number" class="form-control" id="cantidad3" name="cantidad3" min="1" max="cantidad3" required>
                 </div>
                 </div>
             </div>
 
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary bg-green">
-            <span class="fas fa-check"></span>
-                {{ 'Comprar' }}
+            <button type="submit" class="btn btn-primary bg-red">
+            <span class="fas fa-thumbs-down"></span>
+                {{ 'Inhabilitar' }}
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
@@ -210,35 +210,20 @@
                 <th scope="col">Id</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Unidad</th>
-                <th scope="col">Fecha vencimiento</th>
-                <th scope="col">Componentes</th>
-                <th scope="col" colspan='2'>Acciones</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Última mod</th>
+                <th scope="col">Fecha de registro</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td>{{ $d->med_id }}</td>
-                    <td>{{ $d->med_producto }}</td>
-                    <td>{{ $d->med_cantidad }}</td>
-                    <td>{{ $d->med_unidad }}</td>
-                    <td>{{ $d->med_fecha_vencimiento }}</td>
-                    <td>{{ $d->med_componentes }}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#inhabilitacion" title="Comprar" id="inhabilitar"
-                        data-id3="{{ $d->med_id }}" data-nombre3="{{ $d->med_producto }}" data-cantidad3="{{ $d->med_cantidad }}" data-estado3="El medicamento se encuentra disponible">
-                            <span class="fas fa-dollar-sign"></span>
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Detalles" id="detalles"
-                        data-id="{{ $d->med_id }}" data-producto="{{ $d->med_producto }}" data-registro="{{ $d->med_registro_sanitario }}" data-fecha_expedicion="{{ $d->med_fecha_expedicion }}" data-fecha_vencimiento="{{ $d->med_fecha_vencimiento }}" data-cantidad="{{ $d->med_cantidad }}" data-descripcion="{{ $d->med_descripcion }}" data-componentes="{{ $d->med_componentes }}">
-                            <span class="fas fa-eye"></span>
-                        </button>
-                    </td>
-                    <td >{{ $d->med_fecha_registro }}</td>
+                    <td>{{ $d->ord_id }}</td>
+                    <td>{{ $d->ord_producto }}</td>
+                    <td>{{ $d->ord_cantidad }}</td>
+                    <td><span class="badge badge-success">Ordenado</span></td>
+                    <td>{{ $d->ord_fecha_ult_mod }}</td>
+                    <td>{{ $d->ord_fecha_registro }}</td>
                 </tr>
             @endforeach
              </tbody>
@@ -273,38 +258,6 @@
                 "previous": "Anterior"
             }
         }
-        });
-
-        $(document).on("click", "#detalles", function() {
-            var id = $(this).data('id');
-            var producto = $(this).data('producto');
-            var registro = $(this).data('registro');
-            var fecha_expedicion = $(this).data('fecha_expedicion');
-            var fecha_vencimiento = $(this).data('fecha_vencimiento');
-            var cantidad = $(this).data('cantidad');
-            var descripcion = $(this).data('descripcion');
-            var componentes = $(this).data('componentes');
-
-            $("#id").val(id);
-            $("#producto").val(producto);
-            $("#registro").val(registro);
-            $("#fecha_expedicion").val(fecha_expedicion);
-            $("#fecha_vencimiento").val(fecha_vencimiento);
-            $("#cantidad").val(cantidad);
-            $("#descripcion").val(descripcion);
-            $("#componentes").val(componentes);
-        });
-
-        $(document).on("click", "#inhabilitar", function() {
-            var id3 = $(this).data('id3');
-            var nombre3 = $(this).data('nombre3');
-            var cantidad3 = $(this).data('cantidad3');
-            var estado3 = $(this).data('estado3');
-
-            $("#id3").val(id3);
-            $("#nombre3").val(nombre3);
-            $("#cantidad3").val(cantidad3);
-            $("#estado3").val(estado3);
         });
 
     var mensaje = <?php echo $_SESSION["mensaje"]; ?>;

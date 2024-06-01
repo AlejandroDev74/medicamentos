@@ -319,6 +319,11 @@ return [
             'url'  => 'medicamentos',
             'icon' => 'fas fa-fw fa-medkit',
         ],
+        [
+            'text' => 'Órdenes',
+            'url'  => 'ordenes',
+            'icon' => 'fas fa-fw fa-book',
+        ],
         ['header' => 'CONFIGURACIÓN'],
         [
             'text' => 'Usuarios',

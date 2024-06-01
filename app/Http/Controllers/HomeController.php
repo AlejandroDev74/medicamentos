@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = DB::table('medicamentos')->get();
+        $data = DB::table('medicamentos')
+        ->where('med_estado', '<>', 2)
+        ->get();
         return view('catalogo', ['data' => $data]);
     }
 
